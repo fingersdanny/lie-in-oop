@@ -2,21 +2,18 @@ package org.example;
 
 import java.util.Objects;
 
-public class MenuItem {
+public class Cook {
 	private final int price;
 	private final String name;
 
-	public MenuItem(String name, int price) {
+	public Cook(String name, int price) {
 		this.name = name;
 		this.price = price;
 	}
 
-	public int getPrice() {
-		return price;
-	}
-
-	public String getName() {
-		return name;
+	public Cook(MenuItem menuItem) {
+		this.name = menuItem.getName();
+		this.price = menuItem.getPrice();
 	}
 
 	@Override
@@ -25,16 +22,12 @@ public class MenuItem {
 			return true;
 		if (o == null || getClass() != o.getClass())
 			return false;
-		MenuItem menuItem = (MenuItem)o;
-		return price == menuItem.price && Objects.equals(name, menuItem.name);
+		Cook cook = (Cook)o;
+		return price == cook.price && Objects.equals(name, cook.name);
 	}
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(price, name);
-	}
-
-	public boolean matches(String name) {
-		return this.name == name;
 	}
 }
